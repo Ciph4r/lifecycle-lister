@@ -9,23 +9,24 @@ class App extends Component{
 
 
     componentDidMount(){
+        
+        for (let i = 1; i < 21 ; i++){
+            Axios.get(`https://jsonplaceholder.typicode.com/albums/${i}/photos`)
+            .then((res) => {
+                const data = [...this.state.data , res.data[0]]
             
-            Axios.get(`https://jsonplaceholder.typicode.com/albums/1/photos`)
-            .then(res => {
-                const data = []
-                for (let i = 0 ; i < 20 ; i++){
-                    data.push(res.data[i])
-                }
-                this.setState({
-                    data
-                })
+               this.setState({
+                data
             })
-       
 
+            })
+        }
 
     }
 
     render(){
+        console.log(this.state.data)
+
         return(
             <div>
                 <h1>h1</h1>
